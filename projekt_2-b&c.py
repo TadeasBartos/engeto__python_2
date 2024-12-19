@@ -11,29 +11,65 @@ github: TadeasBoomer
 import random
 
 def has_duplicates(num):
-    """Zkontroluje, zda číslo obsahuje unikátní číslice."""
+    """
+    Funkce kontroluje, zda číslo obsahuje unikátní číslice.
+
+    Parametry:
+    -----------------
+    num - číslo, které se má zkontrolovat
+
+    Vrací:
+    -----------------
+    True, pokud číslo obsahuje duplicitní číslice, False jinak
+    """
     num_str = str(num)
     return len(num_str) != len(set(num_str))
 
 def carky(delka):
-    """Tiskne čárky o zadané délce."""
+    """
+    Funkce tiskne čárky o zadané délce.
+
+    Parametry:
+    -----------------
+    delka - délka čárek
+
+    Vrací:
+    -----------------
+    Vypisuje čárky o zadané délce
+    """
     print("-" * delka)
 
 def num_check(num):
-    """Vyzývá uživatele k zadání čísla do té doby, 
+    """
+    Funkce vyzývá uživatele k zadání čísla do té doby, 
         - dokud nezadá číslo o délce 4 číslic, 
         - nezačínající 0, 
-        - volá funkci has_duplicates(num), která kontroluje zda číslo obsahuje duplicitní číslice."""
+        - volá funkci has_duplicates(num), která kontroluje zda číslo obsahuje duplicitní číslice.
+
+    Parametry:
+    -----------------
+    num - číslo, které se má zkontrolovat
+
+    Vrací:
+    -----------------
+    Vypisuje číslo
+    """
     while len(num) != 4 or num.startswith("0") or has_duplicates(num):
         num = input("Please, enter a number made of 4 digits, no letters, no duplicites and not starting with 0: ")
     return num
 
 def bulls(cislo_hrac, cislo_stroj):
-    """BULLS
-    Jedna polovina hry - vstup je číslo hráče a číslo stroje.
-    1. Vynuluje počítadlo bulls_counter
-    2. Porovnává pomocí for cyklu číslice hráče a číslice stroje, pokud jsou na stejné pozici, tak přidá do bulls_counter +1
-    3. Vrátí hodnotu int bulls counter
+    """
+    Funkce počítá bulls.
+
+    Parametry:
+    -----------------
+    cislo_hrac - číslo hráče
+    cislo_stroj - číslo stroje
+
+    Vrací:
+    -----------------
+    Vypisuje bulls
     """
     bulls_counter = 0
     for i in range(0, 4):
@@ -42,11 +78,17 @@ def bulls(cislo_hrac, cislo_stroj):
     return bulls_counter
 
 def cows(cislo_hrac, cislo_stroj):
-    """COWS
-    Druhá polovina hry - vstup je číslo hráče a číslo stroje.
-    1. Vynuluje cows counter
-    2. Porovnává pomocí for cyklu číslice hráče a číslice stroje, pokud jsou zde společné číslice, tak přidá do cows counter +1
-    3. Vrátí hodnotu int cows counter 
+    """
+    Funkce počítá cows.
+
+    Parametry:
+    -----------------
+    cislo_hrac - číslo hráče
+    cislo_stroj - číslo stroje
+
+    Vrací:
+    -----------------
+    Vypisuje cows
     """
     cows_counter = 0 
     for j in range(0,4):
@@ -55,16 +97,33 @@ def cows(cislo_hrac, cislo_stroj):
     return cows_counter
 
 def print_score(bulls_counter, cows_counter):
-    """Pomocí f-stringu vrací, kolik hráč získal cows a kolik bulls. (v závorce nápověda)"""
+    """
+    Funkce vypisuje bulls a cows.
+
+    Parametry:
+    -----------------
+    bulls_counter - počet bulls z předchozí funkce bulls
+    cows_counter - počet cows z předchozí funkce cows
+
+    Vrací:
+    -----------------
+    Vypisuje bulls a cows
+    """
     print(f"You have got {bulls_counter} bull{'s' if bulls_counter != 1 else ''}. (správné číslo i umístění)")
     print(f"You have got {cows_counter} cow{'s' if cows_counter != 1 else ''}. (správné číslo)")
         
 def bulls_and_cows():
     """
-    Tělo hry BULLS & COWS
-    
+    Hlavní těly hry
+
+    Parametry:
+    -----------------
+    žádné
+
+    Vrací:
+    -----------------
     1. Vygeneruje náhodně číslo stroje 1000-9999
-    2. Následně toto generování opakuje do doby, než nesplní parametry funkce has_duplicates(num)
+    2. Následně toto generování opakuje do doby než nesplní parametry funkce has_duplicates(num)
     3. Uvítání hráče, zkontroluje zda zadané číslo hráče splňuje podmínky num_check(num)
     4. Převede obě čísla z int -> str, vynuluje bulls/cows_counter a počítadlo počtu pokusů
     5. Podmínka chodu hry je postavena tak, že cyklus while běží do doby než se číslo hráče nerovná číslu stroje
